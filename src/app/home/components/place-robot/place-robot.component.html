@@ -1,0 +1,43 @@
+<!-- Form group for placing robot  -->
+<ion-grid [formGroup]="placeForm">
+  <ion-row class="ion-justify-content-center">
+    <!-- Taking x value from user to place the robot-->
+    <ion-col size="5">
+        <ion-input  formControlName="xValue" class="format-text" type="number">X: </ion-input>
+    </ion-col>
+    <!-- Taking y value from user to place the robot -->
+    <ion-col size="5" offset="1">
+        <ion-input  formControlName="yValue" class="format-text" type="number">Y: </ion-input>
+    </ion-col>
+    <ion-col size="8" size-sm="12" size-md="12" size-xs="12">
+        <ion-list>
+          <!-- Taking Direction value from user to place the robot-->
+            <ion-radio-group value="direction"  formControlName="direction">
+              <ion-list-header>
+                <ion-label class="format-text">Select Direction</ion-label>
+              </ion-list-header>
+              <ion-row>
+                <ion-col size="6" *ngFor="let direction of Direction.values()">
+                    <ion-item color="tertiary">
+                      <ion-label color="primary">{{ direction }}</ion-label>
+                      <ion-radio slot="start" [value]="direction"></ion-radio>
+                    </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-radio-group>
+          </ion-list>
+    </ion-col>
+  </ion-row>
+    
+  <!-- Button to place robot at entered location -->
+  <ion-row class="ion-justify-content-center ion-margin-vertical">
+    <ion-button (click)="onPlace()" expand="block" size="large" class="button-style">
+      Place
+    </ion-button>
+  </ion-row>
+
+  <!-- in case of invalid values -->
+  <ion-row *ngIf="invalidValue" class="format-text error ion-justify-content-center ion-margin-top">
+    INVALID VALUES
+  </ion-row>
+</ion-grid>

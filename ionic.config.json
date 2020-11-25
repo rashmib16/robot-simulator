@@ -1,0 +1,7 @@
+{
+  "name": "robotSimulator",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

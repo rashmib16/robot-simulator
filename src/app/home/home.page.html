@@ -1,0 +1,56 @@
+<ion-content class="screen-color" [fullscreen]="true">
+  <ion-grid class="grid-box" [ngClass]="invalidMove?'invalid-move':''">
+    <ion-row>
+      <ion-col size="12" size-sm="12" size-md="12" size-lg="6" size-xl="6">
+          <ion-grid>
+              <ion-row class="ion-justify-content-center" *ngFor="let a of [].constructor(gridSize), let y=index">
+                <ion-col *ngFor="let b of [].constructor(gridSize), let x=index" size="2">
+                  <div class="square">
+                    <img *ngIf="robot?.x==x && robot?.y == (gridSize - y - 1)" src="assets/robot.png" class="robot">
+                    {{ x }}, {{ gridSize - y - 1 }}
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      </ion-col>
+      <ion-col class="ion-align-self-center" size="12" size-sm="12" size-md="12" size-lg="6" size-xl="6">
+        <!-- Place form called to place robot at specific position and direction -->
+        <app-place-robot *ngIf="placement" (values)="getValues($event)"></app-place-robot>
+        <ion-grid *ngIf="!placement">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="5">
+              <!-- button to change direction of robot to left -->
+                <ion-button expand="block" size="large" class="button-style" (click)="robot?.changeDirection(rotate.LEFT)">
+                  <img src="assets/left-arrow.svg" class="arrow">
+                </ion-button>
+            </ion-col>
+            <ion-col size="5" offset="1">
+              <!-- button to change direction of robot to right -->
+                <ion-button expand="block" size="large" class="button-style" (click)="robot?.changeDirection(rotate.RIGHT)">
+                    <img src="assets/right-arrow.svg" class="arrow">
+                </ion-button>
+            </ion-col> 
+          </ion-row>
+          <ion-row class="ion-justify-content-center ion-margin-top">
+            <ion-col size="5">
+              <!-- button to move the robot at specified direction -->
+                <ion-button expand="block" size="large" class="button-style" (click)="robotMove()">Move</ion-button>
+            </ion-col>
+            <ion-col size="5" offset="1">
+              <!-- button to place robot at entered values by user -->
+                <ion-button expand="block" size="large" class="button-style" (click)="placement=true">Place</ion-button>
+            </ion-col>
+          </ion-row>
+          <!-- reports the current position of robot -->
+          <ion-row *ngIf="!invalidMove" class="format-text ion-justify-content-center ion-margin-top">
+            X: {{ robot?.x }}, Y: {{ robot?.y }}, {{ direction[robot?.direction] }}
+          </ion-row>
+          <!-- in case of invalid move i.e beyond the grid -->
+          <ion-row *ngIf="invalidMove" class="format-text error ion-justify-content-center ion-margin-top">
+            INVALID MOVE
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

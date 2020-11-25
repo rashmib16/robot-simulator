@@ -1,0 +1,55 @@
+.square {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  margin: 0 0 4px 4px;
+  border-radius: 8px;
+  border: solid 2px var(--ion-color-primary);
+  background-color: #010b12;
+}
+
+.robot {
+  position: absolute;
+  bottom: 0.1%;
+  color: white;
+  transform: scale(0.8);
+}
+
+.button-style {
+  --width: 112px;
+  --height: 64px;
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-primary);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px 3px var(--ion-color-primary), 0 -2px 4px 3px var(--ion-color-primary);
+}
+
+.screen-color {
+  --background: var(--ion-color-tertiary);
+}
+
+.format-text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--ion-color-primary);
+
+  &.error {
+    color: var(--ion-color-danger);
+  }
+}
+
+.grid-box {
+  border: 5px solid var(--ion-color-secondary);
+  border-radius: 8px;
+  box-shadow: 0 0 10px 4px var(--ion-color-primary), 0 0 10px 4px var(--ion-color-primary) inset;
+  margin: 24px;
+
+  &.invalid-move {
+    box-shadow: 0 0 10px 4px var(--ion-color-danger), 0 0 10px 4px var(--ion-color-danger) inset;
+  }
+}
